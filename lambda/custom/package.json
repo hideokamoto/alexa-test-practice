@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:unit && npm run test:simulation",
     "lint": "./node_modules/.bin/eslint index.js",
-    "test:simulation" : "./node_modules/.bin/mocha tests/simulations/* --timeout 10000",
+    "test:simulation" : "./node_modules/.bin/mocha tests/simulations/* --timeout 20000",
     "test:unit": "./node_modules/.bin/mocha tests/unit/*"
   },
   "author": "",

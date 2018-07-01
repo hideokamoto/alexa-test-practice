@@ -35,4 +35,65 @@ describe('test by ask-cli', () => {
       done()
     })
   })
+  it('should return valid response when send onceshot intent', (done) => {
+    execFile('ask', [
+      'simulate', '-s', 'amzn1.ask.skill.d7d6176c-ab76-4e4c-b5ee-81366c4cd223',
+      '-l', 'en-US', '-t', 'open greeter say hello'
+    ], (error, stdout, stderr) => {
+      if (error) {
+        assert.deepEqual(error, {})
+      } else {
+        const { result } = JSON.parse(stdout)
+        const { invocationResponse } = result.skillExecutionInfo
+        const { response } = invocationResponse.body
+        assert.deepEqual(response, {
+          card: {
+            type: 'Simple',
+            title: 'Hello World',
+            content: 'Hello World!'
+          },
+          outputSpeech: {
+            type: 'SSML',
+            ssml: '<speak>Hello World!</speak>'
+          }
+        })
+      }
+      done()
+    })
+  })
+  it('should return valid response when send invocation name and call HelloWorldIntent', (done) => {
+    execFile('ask', [
+      'simulate', '-s', 'amzn1.ask.skill.d7d6176c-ab76-4e4c-b5ee-81366c4cd223',
+      '-l', 'en-US', '-t', 'open greeter'
+    ], (error, stdout, stderr) => {
+      if (error) {
+        assert.deepEqual(error, {})
+      } else {
+        execFile('ask', [
+          'simulate', '-s', 'amzn1.ask.skill.d7d6176c-ab76-4e4c-b5ee-81366c4cd223',
+          '-l', 'en-US', '-t', 'say hello'
+        ], (error, stdout, stderr) => {
+          if (error) {
+            assert.deepEqual(error, {})
+          } else {
+            const { result } = JSON.parse(stdout)
+            const { invocationResponse } = result.skillExecutionInfo
+            const { response } = invocationResponse.body
+            assert.deepEqual(response, {
+              card: {
+                type: 'Simple',
+                title: 'Hello World',
+                content: 'Hello World!'
+              },
+              outputSpeech: {
+                type: 'SSML',
+                ssml: '<speak>Hello World!</speak>'
+              }
+            })
+          }
+          done()
+        })
+      }
+    })
+  })
 })
