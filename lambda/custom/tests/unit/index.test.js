@@ -1,13 +1,8 @@
-const Alexa = require('ask-sdk-core');
-const { PersistenceAdapter } = require('ask-sdk-core');
-const { services } = require('ask-sdk-model');
-const { HandlerInput, BaseSkillFactory } = Alexa;
+/* eslint-disable no-useless-escape */
+const Alexa = require('ask-sdk-core')
 const assert = require('power-assert')
-const { expect } = require('chai')
-const { handler , HelpIntentHandler, GetAddressIntent} = require('../../index.js')
-
-const { ResponseFactory, AttributesManagerFactory } = require('ask-sdk-core')
-const { ServiceClientFactory, apiClient } = services
+const { handler } = require('../../index.js')
+const HelpIntentHandler = require('../../handlers/HelpIntent')
 const { getHandlerInput } = require('ask-utils')
 
 const event = {
@@ -60,15 +55,15 @@ describe('test', () => {
   it('lambda invoke test', (done) => {
     handler(event, {}, (error, result) => {
       assert.equal(error, null)
-      assert.equal(result.response.outputSpeech.ssml, "<speak>Sorry, I can\'t understand the command. Please say again.</speak>");
+      assert.equal(result.response.outputSpeech.ssml, "<speak>Sorry, I can\'t understand the command. Please say again.</speak>")
       done()
     })
   })
-  it('handler test', async() => {
-    const { DefaultHandlerAdapter } = Alexa;
+  it('handler test', async () => {
+    const { DefaultHandlerAdapter } = Alexa
     const handlerAdapter = new DefaultHandlerAdapter()
     const testHandler = {
-      canHandle: function(){ return true},
+      canHandle: function () { return true },
       handle: function (handlerInput) {
         return {shouldEndSession: true}
       }
@@ -76,12 +71,12 @@ describe('test', () => {
     const response = await handlerAdapter.execute(null, testHandler)
     assert.deepEqual(response, {shouldEndSession: true})
   })
-  it('help intent handler test', async() => {
-    const { DefaultHandlerAdapter, ResponseFactory } = Alexa;
+  it('help intent handler test', async () => {
+    const { DefaultHandlerAdapter } = Alexa
     const handlerAdapter = new DefaultHandlerAdapter()
     const Input = getHandlerInput(event)
     const response = await handlerAdapter.execute(Input, HelpIntentHandler)
-    assert.equal(response.outputSpeech.ssml, "<speak>You can say hello to me!</speak>")
+    assert.equal(response.outputSpeech.ssml, '<speak>You can say hello to me!</speak>')
     assert.equal(response.shouldEndSession, false)
   })
 })
