@@ -48,6 +48,7 @@ const HelpIntentHandler = {
       .getResponse();
   },
 };
+exports.HelpIntentHandler = HelpIntentHandler
 
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
@@ -93,12 +94,12 @@ const ErrorHandler = {
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
-  .addRequestHandlers(
-    LaunchRequestHandler,
-    HelloWorldIntentHandler,
-    HelpIntentHandler,
-    CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
-  )
-  .addErrorHandlers(ErrorHandler)
-  .lambda();
+    .addRequestHandlers(
+      LaunchRequestHandler,
+      HelloWorldIntentHandler,
+      HelpIntentHandler,
+      CancelAndStopIntentHandler,
+      SessionEndedRequestHandler
+    )
+    .addErrorHandlers(ErrorHandler)
+    .lambda();
