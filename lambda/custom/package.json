@@ -14,6 +14,7 @@
     "ask-sdk-model": "^1.0.0"
   },
   "devDependencies": {
+    "ask-utils": "^0.7.0",
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
     "power-assert": "^1.6.0"
