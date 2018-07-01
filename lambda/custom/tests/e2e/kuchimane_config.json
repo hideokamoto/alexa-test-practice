@@ -1,0 +1,9 @@
+{
+  "modelPath": "../../../../models/en-US.json",
+  "LaunchRequest": {
+    "match": {
+      "patterns": ["Open greeter"],
+      "type": "verbatim"
+    }
+  }
+}
