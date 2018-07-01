@@ -34,7 +34,7 @@ $ ask deploy
 ## Running tests
 
 ### unit test
-Simple unit tests by mocha / power-assert/ ask-utils
+Simple unit tests by [mocha](https://www.npmjs.com/package/mocha) / [power-assert](https://www.npmjs.com/package/power-assert) / [ask-utils](https://www.npmjs.com/package/ask-utils)
 
 ```
 $ cd lambda/custom
@@ -44,7 +44,7 @@ $ npm run test:unit
 ```
 
 ### simulation test
-Simulation tests by ask-cli / mocha / power-assert
+Simulation tests by [ask-cli](https://www.npmjs.com/package/ask-cli) / [mocha](https://www.npmjs.com/package/mocha) / [power-assert](https://www.npmjs.com/package/power-assert)
 
 ```
 $ pwd
