@@ -20,7 +20,6 @@ const SessionEndedRequestHandler = {
   }
 }
 
-
 const skillBuilder = Alexa.SkillBuilders.custom()
 
 exports.handler = skillBuilder
